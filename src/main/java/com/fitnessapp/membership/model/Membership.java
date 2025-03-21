@@ -1,21 +1,20 @@
-package fitnessreportssvc.model;
+package com.fitnessapp.membership.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Builder
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "workout_reports")
-public class WorkoutReport {
+@Table(name = "membership_reports")
+public class Membership {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -25,11 +24,11 @@ public class WorkoutReport {
     private LocalDate month;
 
     @Column(nullable = false)
-    private int totalWorkouts;
+    private int activeCount;
 
     @Column(nullable = false)
-    private double averageDuration;
+    private int expiredCount;
 
     @Column(nullable = false)
-    private int totalParticipants;
+    private BigDecimal totalRevenue;
 }

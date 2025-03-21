@@ -1,22 +1,26 @@
-package fitnessreportssvc.web.dto;
+package com.fitnessapp.web.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Data
-public class UpsertWorkoutTypeReport {
+public class UpsertWorkoutEvent {
 
     @NotNull
     String workoutType;
 
     @NotNull
-    LocalDate month;
+    LocalDate startTime;
 
     @NotNull
     int duration;
 
     @NotNull
     int participants;
+
+    @NotNull
+    private UUID trainerId;
 }
