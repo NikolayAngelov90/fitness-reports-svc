@@ -15,5 +15,5 @@ public interface WorkoutGeneralRepository extends JpaRepository<WorkoutGeneral, 
 
     Optional<WorkoutGeneral> findByMonth(LocalDate month);
 
-    List<WorkoutGeneral> findByMonthBetween(LocalDate monthAfter, LocalDate monthBefore);
+    List<WorkoutGeneral> findByMonthBetween(LocalDate fromMonth, LocalDate toMonth);
 }

@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class WorkoutTypeReportResponse {
 
     @NotNull
-    private String workoutType;
+    private String type;
 
     @NotNull
     private LocalDate month;

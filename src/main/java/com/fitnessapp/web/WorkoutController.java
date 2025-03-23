@@ -8,7 +8,7 @@ import com.fitnessapp.workout.model.WorkoutGeneral;
 import com.fitnessapp.workout.model.WorkoutTrainer;
 import com.fitnessapp.workout.model.WorkoutType;
 import com.fitnessapp.workout.service.WorkoutService;
-import com.fitnessapp.web.dto.UpsertWorkoutEvent;
+import com.fitnessapp.workout.event.UpsertWorkoutEvent;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,7 +45,7 @@ public class WorkoutController {
         return ResponseEntity.ok(workoutTypeReportResponse);
     }
 
-    @GetMapping("/by-trainers")
+    @GetMapping("/by-trainer")
     public ResponseEntity<TrainerReportResponse> getTrainerReport(@RequestParam UUID trainerId,
                                                                   @RequestParam LocalDate month) {
 
@@ -56,12 +56,12 @@ public class WorkoutController {
     }
 
     @GetMapping("/general")
-    public ResponseEntity<WorkoutGeneralReportResponse> getWorkoutGeneralReport(@RequestParam LocalDate startDate,
-                                                                                @RequestParam LocalDate endDate) {
+    public ResponseEntity<WorkoutGeneralReportResponse> getWorkoutGeneralReport(@RequestParam LocalDate fromMonth,
+                                                                                @RequestParam LocalDate toMonth) {
 
-        WorkoutGeneral workoutGeneralReport = workoutService.getWorkoutGeneralReport(startDate, endDate);
+        WorkoutGeneral workoutGeneralReport = workoutService.getWorkoutGeneralReport(fromMonth, toMonth);
         WorkoutGeneralReportResponse workoutGeneralReportResponse = DtoMapper
-                .fromWorkoutGeneral(workoutGeneralReport, startDate, endDate);
+                .fromWorkoutGeneral(workoutGeneralReport, fromMonth, toMonth);
 
         return ResponseEntity.ok(workoutGeneralReportResponse);
     }

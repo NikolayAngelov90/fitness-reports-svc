@@ -11,10 +11,10 @@ import java.time.LocalDate;
 public class WorkoutGeneralReportResponse {
 
     @NotNull
-    private LocalDate startDate;
+    private LocalDate fromMonth;
 
     @NotNull
-    private LocalDate endDate;
+    private LocalDate toMonth;
 
     @NotNull
     private int totalWorkouts;

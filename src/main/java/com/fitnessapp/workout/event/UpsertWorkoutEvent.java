@@ -1,4 +1,4 @@
-package com.fitnessapp.web.dto;
+package com.fitnessapp.workout.event;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

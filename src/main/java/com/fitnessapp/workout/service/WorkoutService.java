@@ -8,7 +8,7 @@ import com.fitnessapp.workout.model.WorkoutType;
 import com.fitnessapp.workout.repository.WorkoutGeneralRepository;
 import com.fitnessapp.workout.repository.WorkoutTrainerRepository;
 import com.fitnessapp.workout.repository.WorkoutTypeRepository;
-import com.fitnessapp.web.dto.UpsertWorkoutEvent;
+import com.fitnessapp.workout.event.UpsertWorkoutEvent;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;
@@ -81,10 +81,10 @@ public class WorkoutService {
                 .orElseThrow(() -> new ReportDataException("Report not found"));
     }
 
-    public WorkoutGeneral getWorkoutGeneralReport(LocalDate startDate, LocalDate endDate) {
+    public WorkoutGeneral getWorkoutGeneralReport(LocalDate fromMonth, LocalDate toMonth) {
 
         List<WorkoutGeneral> allWorkoutsByPeriod = workoutGeneralRepository.findByMonthBetween(
-                startDate.withDayOfMonth(1), endDate.withDayOfMonth(1));
+                fromMonth.withDayOfMonth(1), toMonth.withDayOfMonth(1));
         if (allWorkoutsByPeriod.isEmpty()) {
             throw new ReportDataException("Report not found");
         }
@@ -112,7 +112,7 @@ public class WorkoutService {
                 .build();
 
         return WorkoutGeneral.builder()
-                .month(startDate)
+                .month(fromMonth)
                 .stats(workoutStats)
                 .build();
     }

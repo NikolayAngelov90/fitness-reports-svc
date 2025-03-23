@@ -17,7 +17,7 @@ public class DtoMapper {
 
     public static WorkoutTypeReportResponse fromWorkoutType(WorkoutType entity) {
         return WorkoutTypeReportResponse.builder()
-                .workoutType(entity.getWorkoutType())
+                .type(entity.getWorkoutType())
                 .month(entity.getMonth())
                 .totalWorkouts(entity.getStats().getTotalWorkouts())
                 .averageDuration(entity.getStats().getAverageDuration())
@@ -36,11 +36,11 @@ public class DtoMapper {
     }
 
     public static WorkoutGeneralReportResponse fromWorkoutGeneral(WorkoutGeneral entity,
-                                                                  LocalDate startDate,
-                                                                  LocalDate endDate) {
+                                                                  LocalDate fromMonth,
+                                                                  LocalDate toMonth) {
         return WorkoutGeneralReportResponse.builder()
-                .startDate(startDate)
-                .endDate(endDate)
+                .fromMonth(fromMonth)
+                .toMonth(toMonth)
                 .totalWorkouts(entity.getStats().getTotalWorkouts())
                 .averageDuration(entity.getStats().getAverageDuration())
                 .totalParticipants(entity.getStats().getTotalParticipants())

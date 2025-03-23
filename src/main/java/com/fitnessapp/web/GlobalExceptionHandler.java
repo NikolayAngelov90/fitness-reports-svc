@@ -1,24 +1,23 @@
 package com.fitnessapp.web;
 
 import com.fitnessapp.exceptions.ReportDataException;
+import com.fitnessapp.web.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.ErrorResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
-import java.time.Instant;
 
-@RestControllerAdvice
-public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
+@ControllerAdvice
+public class GlobalExceptionHandler {
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ReportDataException.class)
-    public ErrorResponse handleReportDataException(ReportDataException e) {
+    public ResponseEntity<ErrorResponse> handleReportDataException(ReportDataException e) {
 
-        return ErrorResponse.builder(e, HttpStatus.NOT_FOUND, e.getMessage())
-                .title("Report Data Not Found")
-                .property("timestamp", Instant.now())
-                .property("errorCode", "REPORT_DATA_NOT_FOUND")
-                .build();
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND.value(), e.getMessage());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
     }
 }
