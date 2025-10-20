@@ -38,6 +38,7 @@ public class WorkoutService {
     @KafkaListener(topics = "workout-events")
     @Transactional
     public void upsertWorkoutStats(UpsertWorkoutEvent event) {
+        log.info("Got Message from workout-events topic {}", event);
 
         WorkoutType typeReport = workoutTypeRepository
                 .findByWorkoutTypeAndMonth(event.getWorkoutType(), event.getStartTime().withDayOfMonth(1))

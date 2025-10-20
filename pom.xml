@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.fitnessapp</groupId>
     <artifactId>fitness-reports-svc</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>fitness-reports-svc</name>
     <description>fitness-reports-svc</description>
     <url/>
