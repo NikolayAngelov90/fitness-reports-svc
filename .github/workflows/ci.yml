@@ -65,7 +65,7 @@ jobs:
       - name: Verify JAR was downloaded
         run: |
            ls -la ./app
-           test -f ./app/fitness-reports-scv-*.jar || (echo "No JAR found!" && exit 1)
+           test -f ./app/fitness-reports-svc-*.jar || (echo "No JAR found!" && exit 1)
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
