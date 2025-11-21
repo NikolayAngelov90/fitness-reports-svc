@@ -52,7 +52,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ${{ secrets.DOCKER_USERNAME }}/fitnessapp
+            ${{ secrets.DOCKER_USERNAME }}/fitnessreportsvc
             ghcr.io/${{ github.repository }}
           tags: |
             type=ref,event=branch
