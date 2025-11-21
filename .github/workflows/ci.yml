@@ -36,11 +36,11 @@ jobs:
           path: target/surefire-reports/
 
       - name: Upload build JAR
-        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: fitness-reports-app-jar
           path: target/fitness-reports-svc-*.jar
+          if-no-files-found: error
   
   
   push-docker-image:
@@ -59,7 +59,7 @@ jobs:
       - name: Download JAR artifact
         uses: actions/download-artifact@v4
         with:
-          name: fitness-app-jar
+          name: fitness-reports-app-jar
           path: ./app 
     
       - name: Verify JAR was downloaded
